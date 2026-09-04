@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PAINEL DEMO (FAKE) — Análise da Mecânica | Dados Fictícios</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,system-ui,sans-serif;background:#f4f7fc;color:#0f1e33;line-height:1.55}
+.top{background:#0f1e33;color:#fff;padding:14px 20px;position:sticky;top:0;z-index:10}
+.top .w{max-width:1180px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.fake{background:#ff7a00;color:#fff;font-weight:900;font-size:12px;padding:5px 12px;border-radius:100px;letter-spacing:.08em}
+.w{max-width:1180px;margin:auto;padding:0 20px}
+.warn{background:#fff7ed;border:2px dashed #ff7a00;border-radius:14px;padding:14px 18px;margin:20px 0;font-size:14px}
+.warn b{color:#c25e00}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin:18px 0}
+.kpi{background:#fff;border:1px solid #e5ecf5;border-radius:16px;padding:16px}
+.kpi small{font-size:12px;color:#5b6b82;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.kpi b{font-size:24px;display:block;margin:4px 0}
+.kpi span{font-size:13px;font-weight:700}.up{color:#16a34a}.down{color:#dc2626}
+.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.card{background:#fff;border:1px solid #e5ecf5;border-radius:18px;padding:20px;margin-bottom:14px}
+.card h3{font-size:16px;margin-bottom:4px}.card p.sub{font-size:13px;color:#5b6b82;margin-bottom:14px}
+.bars{display:flex;align-items:end;gap:10px;height:190px;padding-top:10px}
+.bar-c{flex:1;text-align:center}.bar-c i{display:block;background:linear-gradient(180deg,#0b5cff,#00b4ff);border-radius:8px 8px 4px 4px;margin:0 auto;min-height:8px}
+.bar-c b{font-size:12px}.bar-c small{font-size:11px;color:#5b6b82;display:block}
+.donut{display:flex;gap:16px;align-items:center}.legend{font-size:13px;display:grid;gap:8px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block;margin-right:7px}
+.funnel div{background:#eef3ff;border-radius:10px;padding:10px 14px;margin-bottom:8px;display:flex;justify-content:space-between;font-weight:700;font-size:14px}
+.funnel div b{color:#0b5cff}
+table{width:100%;border-collapse:collapse;font-size:13.5px}th{text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:#5b6b82;padding:10px;border-bottom:2px solid #e5ecf5}td{padding:10px;border-bottom:1px solid #eef2f7}
+.pill{font-size:11.5px;font-weight:800;padding:4px 10px;border-radius:100px;white-space:nowrap}
+.novo{background:#e8efff;color:#0b5cff}.agend{background:#fef3c7;color:#92400e}.concl{background:#dcfce7;color:#166534}.perd{background:#fee2e2;color:#991b1b}
+.btn{border:0;border-radius:10px;padding:10px 16px;font-weight:800;cursor:pointer;font-size:13.5px}
+.btn-b{background:#0b5cff;color:#fff}.btn-o{background:#fff;border:2px solid #e5ecf5}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.filters .btn.on{background:#0f1e33;color:#fff;border-color:#0f1e33}
+.ins{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.ins div{background:#f0f7ff;border:1px solid #cfe0ff;border-radius:12px;padding:14px;font-size:13.5px}
+a{color:#0b5cff;font-weight:700}
+@media(max-width:980px){.kpis{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.ins{grid-template-columns:1fr}table{display:block;overflow-x:auto}}
+</style>
+</head>
+<body>
+<div class="top"><div class="w">
+<div><span class="fake">● AMBIENTE FAKE — DADOS FICTÍCIOS</span><div style="font-weight:900;font-size:18px;margin-top:6px">🔧 TurboTorque Auto Center <span style="font-weight:400;font-size:13px;color:#9db9ff">/ painel demo para análise</span></div></div>
+<div style="display:flex;gap:8px"><a href="index.html" class="btn btn-b" style="text-decoration:none;background:#25d366">← Ver site fake</a><button class="btn btn-b" onclick="exportCSV()">⬇ Exportar CSV</button></div>
+</div></div>
+
+<div class="w">
+<div class="warn">⚠️ <b>Isto é um FAKE para análise.</b> Marca, telefones <b>(11) 90000-0000</b>, endereço <b>Rua Fictícia, 000 — Cidade Exemplo/UF</b>, CNPJ, nomes de clientes, placas, valores e métricas são <b>100% inventados</b>. Período simulado: <b>01 a 31/ago/2026</b>. Nenhum dado é real (LGPD OK).</div>
+
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+<label style="font-size:13px;font-weight:700">Período:</label>
+<select id="periodo" onchange="trocaPeriodo(this.value)" style="padding:9px 12px;border-radius:10px;border:2px solid #e5ecf5;font-weight:700">
+<option value="7">Últimos 7 dias (fake)</option><option value="30" selected>Últimos 30 dias (fake)</option><option value="90">Últimos 90 dias (fake)</option>
+</select>
+<span style="font-size:13px;color:#5b6b82">Fonte simulada: site + WhatsApp + Google (tudo fake)</span>
+</div>
+
+<div class="kpis">
+<div class="kpi"><small>Visitas no site</small><b id="k-vis">3.842</b><span class="up">▲ 18% vs mês anterior*</span></div>
+<div class="kpi"><small>Cliques WhatsApp</small><b id="k-cli">412</b><span class="up">▲ 10,7% de conversão*</span></div>
+<div class="kpi"><small>Agendamentos</small><b id="k-age">187</b><span class="up">▲ 45% clique→agenda*</span></div>
+<div class="kpi"><small>Compareceram</small><b id="k-comp">149</b><span class="down">▼ 20% no-show*</span></div>
+<div class="kpi"><small>Ticket médio</small><b id="k-tick">R$ 486</b><span class="up">▲ 6%*</span></div>
+<div class="kpi"><small>Faturamento</small><b id="k-fat">R$ 90.882</b><span class="up">▲ 22%*</span></div>
+</div>
+<p style="font-size:12px;color:#5b6b82;margin:-6px 0 14px">*números fictícios gerados para análise de funil.</p>
+
+<div class="grid">
+<div>
+<div class="card"><h3>📊 Agendamentos por dia da semana (fake)</h3><p class="sub">Segunda e sábado de manhã concentram a demanda — avalie reforçar equipe.</p>
+<div class="bars" id="bars"></div></div>
+<div class="card"><h3>🔻 Funil de conversão (fake)</h3><p class="sub">Onde o funil mais vaza: clique → agendamento.</p>
+<div class="funnel">
+<div><span>1 · Visitas no site</span><b>3.842 (100%)</b></div>
+<div><span>2 · Clicaram no WhatsApp</span><b>412 (10,7%)</b></div>
+<div><span>3 · Agendaram horário</span><b>187 (4,9%)</b></div>
+<div><span>4 · Compareceram</span><b>149 (3,9%)</b></div>
+<div style="background:#0b5cff;color:#fff"><span>5 · Serviço fechado 💰</span><b style="color:#fff">132 (3,4%)</b></div>
+</div></div>
+<div class="card"><h3>💡 Insights automáticos (para analisar)</h3><p class="sub">Leituras prontas para discutir com a equipe — tudo baseado em dados fake.</p>
+<div class="ins">
+<div>🏆 <b>Serviço campeão:</b> Freios (34 agend.) com ticket R$ 520. Sugestão fake: criar combo "pastilha + fluido".</div>
+<div>⏰ <b>Melhor horário:</b> 8h–10h converte 2,1x mais. Sugestão: abrir 2 vagas de encaixe cedo.</div>
+<div>📉 <b>Alerta no-show:</b> 20% faltam. Sugestão: lembrete no WhatsApp 1 dia antes (modelo pronto abaixo).</div>
+</div></div>
+</div>
+<div>
+<div class="card"><h3>🛠️ Agendamentos por serviço (fake)</h3><p class="sub">Distribuição dos 187 agendamentos.</p>
+<div class="donut">
+<svg width="130" height="130" viewBox="0 0 42 42"><circle cx="21" cy="21" r="15.9" fill="none" stroke="#e5ecf5" stroke-width="7"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#0b5cff" stroke-width="7" stroke-dasharray="34 66" stroke-dashoffset="25"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#00b4ff" stroke-width="7" stroke-dasharray="22 78" stroke-dashoffset="-9"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#22c55e" stroke-width="7" stroke-dasharray="18 82" stroke-dashoffset="-31"/><circle cx="21" cy="21" r="15.9" fill="none" stroke="#ff7a00" stroke-width="7" stroke-dasharray="26 74" stroke-dashoffset="-49"/></svg>
+<div class="legend"><span><i class="dot" style="background:#0b5cff"></i>Freios — 34 (18%)</span><span><i class="dot" style="background:#00b4ff"></i>Revisão — 41 (22%)</span><span><i class="dot" style="background:#22c55e"></i>Óleo — 33 (18%)</span><span><i class="dot" style="background:#ff7a00"></i>Outros — 79 (42%)</span></div>
+</div></div>
+<div class="card"><h3>📱 Origem dos leads (fake)</h3><p class="sub">De onde vieram os 412 cliques.</p>
+<div class="funnel"><div><span>🔍 Google (orgânico + perfil)</span><b>46%</b></div><div><span>💬 Direto / WhatsApp</span><b>27%</b></div><div><span>📸 Instagram</span><b>17%</b></div><div><span>👥 Indicação</span><b>10%</b></div></div></div>
+<div class="card"><h3>✉️ Modelo de lembrete (copiar)</h3><p class="sub">Texto fake pronto para reduzir no-show.</p>
+<textarea id="lembrete" rows="5" style="width:100%;border:2px solid #e5ecf5;border-radius:10px;padding:10px;font-size:13px">Olá, {NOME}! Aqui é da TurboTorque (DEMO). Confirmando seu agendamento amanhã às {HORA} para {SERVIÇO} do {CARRO}. Responda 1 para CONFIRMAR ou 2 para REMARCAR. 📍 Rua Fictícia, 000.</textarea>
+<button class="btn btn-b" style="margin-top:8px" onclick="navigator.clipboard.writeText(document.getElementById('lembrete').value);this.textContent='✅ Copiado!'">Copiar texto</button></div>
+</div>
+</div>
+
+<div class="card"><h3>📋 Últimos 20 leads (todos FICTÍCIOS — nomes, placas e telefones inventados)</h3>
+<p class="sub">Use os filtros para analisar o pipeline. Clique no status para simular mudança.</p>
+<div class="filters" id="filters">
+<button class="btn btn-o on" data-f="todos">Todos (20)</button><button class="btn btn-o" data-f="Novo">🆕 Novos</button><button class="btn btn-o" data-f="Agendado">📅 Agendados</button><button class="btn btn-o" data-f="Concluído">✅ Concluídos</button><button class="btn btn-o" data-f="Perdido">❌ Perdidos</button>
+</div>
+<div style="overflow-x:auto"><table><thead><tr><th>Data</th><th>Cliente* </th><th>Carro / Placa*</th><th>Serviço</th><th>Valor*</th><th>Origem</th><th>Status</th></tr></thead><tbody id="tb"></tbody></table></div>
+<p style="font-size:12px;color:#5b6b82;margin-top:8px">*fake — gerado para análise. Telefones mascarados: (11) 90000-00XX.</p>
+</div>
+<p style="text-align:center;font-size:13px;color:#5b6b82;padding:10px 0 30px">Feito para análise — <a href="index.html">voltar ao site fake</a> · Para usar de verdade, troque marca, WhatsApp, endereço e zere os dados.</p>
+</div>
+<script>
+const dias=[["SEG",38],["TER",27],["QUA",25],["QUI",29],["SEX",33],["SÁB",35],["DOM",4]];
+document.getElementById('bars').innerHTML=dias.map(d=>{const h=Math.round(d[1]/38*150)+20;return `<div class="bar-c"><i style="height:${h}px;width:34px"></i><b>${d[1]}</b><small>${d[0]}</small></div>`}).join('');
+const leads=[
+["28/08","Ana Beatriz S.","Onix 2021 · ABC1D01","Revisão Completa","R$ 399","Google","Agendado"],
+["28/08","Carlos H. M.","HB20 2019 · BRA2E19","Freios","R$ 520","WhatsApp","Concluído"],
+["27/08","João Pedro L.","Corolla 2020 · XYZ3F42","Troca de óleo","R$ 249","Instagram","Concluído"],
+["27/08","Mariana C.","Gol 2018 · QWE4R56","Ar-condicionado","R$ 380","Google","Novo"],
+["26/08","Roberto F.","Strada 2022 · FLT5G67","Suspensão","R$ 890","Indicação","Agendado"],
+["26/08","Fernanda L.","Creta 2023 · AAA1B23","Pneus + alinhamento","R$ 1.890","Google","Concluído"],
+["25/08","Paulo R. S.","Civic 2017 · CCC3D45","Motor / injeção","R$ 740","Google","Perdido"],
+["25/08","Juliana M.","Mobi 2021 · DDD4E67","Elétrica / bateria","R$ 549","WhatsApp","Concluído"],
+["24/08","Rafael T.","Compass 2022 · EEE5F78","Revisão Premium","R$ 649","Instagram","Agendado"],
+["24/08","Camila R.","Kwid 2020 · FFF6G89","Freios","R$ 480","Google","Novo"],
+["23/08","Diego A.","Hilux 2019 · GGG7H01","Suspensão","R$ 1.120","Indicação","Concluído"],
+["23/08","Patrícia G.","Polo 2021 · HHH8I12","Troca de óleo","R$ 269","WhatsApp","Perdido"],
+["22/08","Lucas F."," HR-V 2020 · III9J34","Alinhamento","R$ 120","Google","Concluído"],
+["22/08","Beatriz N.","Argo 2022 · JJJ1K56","Revisão Essencial","R$ 199","Instagram","Agendado"],
+["21/08","Marcos V.","S10 2018 · KKK2L78","Motor / injeção","R$ 980","Google","Novo"],
+["21/08","Aline P.","T-Cross 2023 · LLL3M90","Ar-condicionado","R$ 420","WhatsApp","Agendado"],
+["20/08","Thiago O.","Uno 2016 · MMM4N12","Freios","R$ 390","Google","Perdido"],
+["20/08","Larissa D.","Yaris 2021 · NNN5O34","Troca de óleo","R$ 259","Indicação","Concluído"],
+["19/08","Bruno C.","Toro 2021 · OOO6P56","Suspensão","R$ 760","Google","Novo"],
+["19/08","Sofia E.","Fit 2019 · PPP7Q78","Revisão Completa","R$ 399","Instagram","Agendado"]];
+const pill=s=>s==="Novo"?"novo":s==="Agendado"?"agend":s==="Concluído"?"concl":"perd";
+function render(f){document.getElementById('tb').innerHTML=leads.filter(l=>f==='todos'||l[6]===f).map(l=>`<tr><td>${l[0]}</td><td><b>${l[1]}</b><br><span style="color:#5b6b82">(11) 90000-00XX*</span></td><td>${l[2]}</td><td>${l[3]}</td><td><b>${l[4]}</b></td><td>${l[5]}</td><td><span class="pill ${pill(l[6])}">${l[6]}</span></td></tr>`).join('');}
+render('todos');
+document.querySelectorAll('#filters .btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters .btn').forEach(x=>x.classList.remove('on'));b.classList.add('on');render(b.dataset.f);});
+function exportCSV(){let c="data;cliente;carro;servico;valor;origem;status\n"+leads.map(l=>l.join(";")).join("\n");let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:'text/csv'}));a.download="leads-FAKE-demo.csv";a.click();}
+function trocaPeriodo(v){const m={7:["912","98","44","35","R$ 472","R$ 20.768"],30:["3.842","412","187","149","R$ 486","R$ 90.882"],90:["11.204","1.180","531","422","R$ 491","R$ 260.821"]}[v];["k-vis","k-cli","k-age","k-comp","k-tick","k-fat"].forEach((k,i)=>document.getElementById(k).textContent=m[i]);}
+</script>
+</body>
+</html>

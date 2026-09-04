@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MasterCar Auto Center — Mecânica de Automóveis | Revisão, Freios, Motor e Mais</title>
+<meta name="description" content="Mecânica completa: revisão, troca de óleo, freios, suspensão, motor e injeção, elétrica, ar-condicionado, pneus, alinhamento e balanceamento. Agende pelo WhatsApp." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#0b5cff; --blue-dark:#0847c6; --blue-light:#e8efff;
+  --ink:#0f1e33; --muted:#5b6b82; --line:#e5ecf5;
+  --bg:#ffffff; --bg-soft:#f4f7fc; --card:#ffffff;
+  --green:#22c55e; --orange:#ff7a00;
+  --radius:18px; --shadow:0 12px 32px rgba(11,92,255,.10);
+  --max:1160px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.container{max-width:var(--max);margin:0 auto;padding:0 20px}
+/* TOP BAR */
+.topbar{background:var(--ink);color:#dbe6ff;font-size:13.5px}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;padding:8px 20px;gap:12px;flex-wrap:wrap}
+.topbar span{margin-right:16px}
+/* HEADER */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;max-width:var(--max);margin:0 auto}
+.logo{display:flex;align-items:center;gap:11px;font-weight:900;font-size:20px}
+.logo-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--blue),#00b4ff);display:grid;place-items:center;color:#fff;font-size:22px;font-weight:900}
+.logo small{display:block;font-size:11px;letter-spacing:.18em;color:var(--blue);font-weight:800}
+.links{display:flex;gap:26px;font-weight:600;font-size:15px;color:#2b3b52}
+.links a:hover{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;border-radius:12px;padding:13px 22px;border:0;cursor:pointer;transition:.2s;font-size:15px}
+.btn-blue{background:var(--blue);color:#fff;box-shadow:0 8px 20px rgba(11,92,255,.30)}
+.btn-blue:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(34,197,94,.3)}
+.btn-green:hover{filter:brightness(.95);transform:translateY(-1px)}
+.btn-outline{background:#fff;border:2px solid var(--line);color:var(--ink)}
+.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
+.btn-whats{background:#25d366;color:#fff}
+.hamb{display:none;background:#eef3ff;border:1px solid var(--line);border-radius:10px;font-size:22px;padding:6px 12px;cursor:pointer}
+/* HERO */
+.hero{background:radial-gradient(900px 420px at 85% 10%, #dbe8ff 0%, transparent 60%),radial-gradient(700px 380px at 5% 20%, #e8f7ff 0%, transparent 55%),linear-gradient(180deg,#f7faff 0%,#fff 100%);padding:56px 0 30px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:100px;font-size:13px;font-weight:700;color:var(--blue-dark);box-shadow:var(--shadow)}
+.badge .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(34,197,94,.18)}
+h1{font-size:clamp(32px,4.6vw,54px);line-height:1.06;letter-spacing:-.03em;margin:18px 0 14px}
+h1 span{color:var(--blue)}
+.lead{color:var(--muted);font-size:18px;max-width:540px}
+.hero-cta{display:flex;gap:12px;margin:24px 0 18px;flex-wrap:wrap}
+.trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:6px}
+.trust div{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:700;color:#2b3b52}
+.stars{color:#f59e0b;letter-spacing:2px}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 24px 60px rgba(15,30,51,.12);overflow:hidden}
+.hero-card-top{background:linear-gradient(135deg,#0f1e33,#0b5cff);color:#fff;padding:22px 24px;display:flex;justify-content:space-between;align-items:center}
+.hero-card-top strong{font-size:18px}
+.hero-card-top span{font-size:13px;opacity:.85}
+.price-tag{background:#fff;color:var(--ink);border-radius:12px;padding:8px 14px;text-align:center}
+.price-tag b{font-size:20px;color:var(--blue)}
+.hero-list{padding:8px 24px 20px}
+.hero-list li{list-style:none;display:flex;gap:11px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.hero-list li:last-child{border:0}
+.check{width:26px;height:26px;min-width:26px;border-radius:50%;background:#e6f9ed;color:#16a34a;display:grid;place-items:center;font-weight:900}
+.hero-note{background:var(--blue-light);margin:0 18px 18px;border-radius:14px;padding:13px 15px;font-size:13.5px;color:#1e3a66}
+/* STATS */
+.stats{margin:26px 0 0;background:#fff;border:1px solid var(--line);border-radius:18px;display:grid;grid-template-columns:repeat(4,1fr);box-shadow:var(--shadow);overflow:hidden}
+.stat{padding:20px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border:0}
+.stat b{font-size:26px;color:var(--blue);display:block}
+.stat span{font-size:13px;color:var(--muted);font-weight:600}
+/* SECTIONS */
+section{padding:72px 0}
+.eyebrow{color:var(--blue);font-weight:800;letter-spacing:.16em;font-size:12.5px;text-transform:uppercase}
+h2{font-size:clamp(26px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margin:10px 0 12px}
+.sub{color:var(--muted);max-width:680px;font-size:17px}
+.grid-serv{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;transition:.22s;position:relative}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:#c8d9ff}
+.icon{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:var(--blue-light);margin-bottom:14px}
+.card h3{font-size:17px;margin-bottom:7px}
+.card p{font-size:14px;color:var(--muted)}
+.card .tag{position:absolute;top:16px;right:16px;font-size:11px;font-weight:800;background:#fff3e6;color:#c25e00;padding:4px 10px;border-radius:100px}
+.card ul{margin-top:12px;list-style:none}
+.card ul li{font-size:13.5px;color:#33475f;padding:4px 0 4px 20px;position:relative}
+.card ul li::before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:900}
+/* STEPS */
+.steps-bg{background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.step b.num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;margin-bottom:12px}
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:10px}
+.about-img{background:linear-gradient(135deg,#e8efff,#f4f7fc);border:1px solid var(--line);border-radius:22px;padding:28px}
+.meter{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:12px}
+.meter div{display:flex;justify-content:space-between;font-size:13.5px;font-weight:700;margin-bottom:8px}
+.bar{height:9px;border-radius:100px;background:#e8efff;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),#00b4ff);border-radius:100px}
+.checklist{list-style:none;margin:18px 0;display:grid;gap:10px}
+.checklist li{display:flex;gap:10px;font-weight:600;font-size:15px}
+/* PLANS */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px}
+.plan{background:#fff;border:2px solid var(--line);border-radius:20px;padding:26px;position:relative}
+.plan.pop{border-color:var(--blue);box-shadow:0 18px 44px rgba(11,92,255,.18)}
+.plan .pop-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:12px;font-weight:800;padding:5px 14px;border-radius:100px}
+.plan h3{font-size:19px}
+.plan .p{font-size:34px;font-weight:900;margin:10px 0 2px}
+.plan .p small{font-size:14px;color:var(--muted);font-weight:600}
+.plan ul{list-style:none;margin:16px 0 20px;display:grid;gap:9px;font-size:14.5px;color:#33475f}
+.plan ul li::before{content:"✓ ";color:var(--green);font-weight:900}
+/* DEPO */
+.depo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.depo{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.depo p{font-size:14.5px;color:#33475f}
+.depo .who{display:flex;align-items:center;gap:12px;margin-top:16px}
+.avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#00b4ff);color:#fff;display:grid;place-items:center;font-weight:800}
+/* FORM */
+.booking{background:linear-gradient(135deg,#0f1e33 0%,#123a9b 60%,#0b5cff 100%);color:#fff;border-radius:26px;padding:0;overflow:hidden;display:grid;grid-template-columns:.95fr 1.05fr}
+.booking-info{padding:40px 36px}
+.booking-info h2{color:#fff}
+.booking-info p{color:#c9d8ff}
+.info-item{display:flex;gap:12px;margin:18px 0;align-items:flex-start}
+.info-ico{width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.14);display:grid;place-items:center;font-size:20px;min-width:42px}
+form{background:#fff;color:var(--ink);margin:18px;border-radius:18px;padding:26px;display:grid;gap:13px}
+label{font-size:13px;font-weight:700;color:#33475f}
+input,select,textarea{width:100%;border:2px solid var(--line);border-radius:11px;padding:12px 14px;font-size:15px;font-family:inherit;outline:none;transition:.2s;background:#fbfcff}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);background:#fff}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.hint{font-size:13px;color:var(--muted);text-align:center}
+/* FAQ + CONTACT */
+.faq-contact{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;margin-top:10px}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:10px;cursor:pointer}
+summary{font-weight:700;cursor:pointer}
+details p{color:var(--muted);font-size:14.5px;margin-top:8px}
+.contact-card{background:var(--bg-soft);border:1px solid var(--line);border-radius:18px;padding:26px}
+.contact-card iframe{width:100%;height:220px;border:0;border-radius:12px;margin-top:14px}
+.kv{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+/* FOOTER */
+footer{background:var(--ink);color:#c9d8ff;padding:40px 0 22px;margin-top:20px}
+.foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:24px}
+.foot h4{color:#fff;margin-bottom:12px}
+.foot a{display:block;padding:4px 0;font-size:14px}
+.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:26px;padding-top:16px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+/* FLOAT */
+.float{position:fixed;right:18px;bottom:18px;z-index:60;background:#25d366;color:#fff;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-size:28px;box-shadow:0 12px 30px rgba(37,211,102,.45);transition:.2s}
+.float:hover{transform:scale(1.07)}
+@media(max-width:980px){
+  .hero-grid,.about-grid,.booking,.faq-contact{grid-template-columns:1fr}
+  .grid-serv{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .plans,.depo-grid{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stat:nth-child(2){border-right:0}
+  .stat{border-bottom:1px solid var(--line)}
+  .links{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:18px 22px;border-bottom:1px solid var(--line);gap:14px}
+  .links.open{display:flex}
+  .hamb{display:block}
+  .foot{grid-template-columns:1fr}
+  form{margin:0 12px 12px}
+}
+@media(max-width:560px){.grid-serv,.row2,.steps{grid-template-columns:1fr} section{padding:52px 0}}
+</style>
+</head>
+<body>
+
+<div style="background:#ff7a00;color:#fff;text-align:center;font-size:13px;font-weight:800;padding:8px 12px;letter-spacing:.02em">⚠️ SITE FAKE PARA ANÁLISE — marca, telefone, endereço e preços fictícios &nbsp;•&nbsp; <a href="analise.html" style="color:#fff;text-decoration:underline">abrir painel demo →</a></div>
+
+<div class="topbar">
+  <div class="container">
+    <div>📍 <span id="tb-end">Av. Principal, 1234 — Centro</span> 🕒 <span>Seg–Sex 8h às 18h • Sáb 8h às 12h</span></div>
+    <div>📞 <a href="tel:+5511999999999" style="font-weight:800;color:#fff">(11) 99999-9999</a></div>
+  </div>
+</div>
+
+<header>
+  <nav class="nav">
+    <a class="logo" href="#topo"><span class="logo-mark">🔧</span><span>MasterCar<small>AUTO CENTER</small></span></a>
+    <div class="links" id="menu">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#sobre">A oficina</a>
+      <a href="#planos">Revisões</a>
+      <a href="#avaliacoes">Avaliações</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a class="btn btn-green" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20agendar%20uma%20revis%C3%A3o%20para%20meu%20carro." target="_blank" rel="noopener">💬 Agendar</a>
+      <button class="hamb" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div class="hero" id="topo">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="badge"><span class="dot"></span> Vagas abertas hoje • Atendemos todos os modelos</span>
+        <h1>Sua mecânica de confiança para <span>rodar tranquilo</span> todos os dias</h1>
+        <p class="lead">Revisão completa, freios, suspensão, motor, injeção eletrônica, elétrica, ar-condicionado e pneus. Orçamento transparente, peças de qualidade e garantia por escrito.</p>
+        <div class="hero-cta">
+          <a class="btn btn-green" href="#agendar">📅 Agendar revisão</a>
+          <a class="btn btn-outline" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Preciso%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener">Pedir orçamento</a>
+        </div>
+        <div class="trust">
+          <div><span class="stars">★★★★★</span> 4.9 — 480+ avaliações</div>
+          <div>✅ Garantia de 12 meses</div>
+          <div>🛡️ Orçamento sem compromisso</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-top">
+          <div><strong>Revisão Preventiva</strong><br><span>Check-up com 60+ itens + relatório</span></div>
+          <div class="price-tag">a partir de<br><b>R$ 199</b></div>
+        </div>
+        <ul class="hero-list">
+          <li><span class="check">✓</span> Scanner eletrônico + teste de rodagem gratuitos na revisão</li>
+          <li><span class="check">✓</span> Troca de óleo, filtros, freios e correias com peças originais</li>
+          <li><span class="check">✓</span> Parcelamos em até 12x e atendemos seguradoras</li>
+          <li><span class="check">✓</span> Carro reserva / leva e traz na região central</li>
+        </ul>
+        <div class="hero-note">⚠️ <b>Promoção da semana:</b> alinhamento + balanceamento grátis na troca de 4 pneus. Válido até sábado.</div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>15+ anos</b><span>de experiência</span></div>
+      <div class="stat"><b>12 mil+</b><span>carros atendidos</span></div>
+      <div class="stat"><b>4.9 ★</b><span>nota média no Google</span></div>
+      <div class="stat"><b>12 meses</b><span>de garantia real</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <span class="eyebrow">Nossos serviços</span>
+    <h2>Tudo que seu carro precisa, em um só lugar</h2>
+    <p class="sub">Do check-up rápido ao reparo completo do motor. Equipe certificada, equipamentos modernos e peças com procedência.</p>
+    <div class="grid-serv">
+      <div class="card"><span class="tag">Mais pedido</span><div class="icon">🛠️</div><h3>Revisão Preventiva</h3><p>Evite quebras e economize combustível.</p><ul><li>Check-up 60+ itens</li><li>Troca de filtros</li><li>Relatório com fotos</li></ul></div>
+      <div class="card"><div class="icon">🛢️</div><h3>Troca de Óleo</h3><p>Óleo e filtros com especificação de fábrica.</p><ul><li>Semi e sintético</li><li>Troca em 30 min</li><li>Aditivos e higienização</li></ul></div>
+      <div class="card"><span class="tag">Segurança</span><div class="icon">🛑</div><h3>Freios</h3><p>Frenagem firme e sem ruídos.</p><ul><li>Pastilhas e discos</li><li>Fluido e sangria</li><li>ABS e freio de mão</li></ul></div>
+      <div class="card"><div class="icon">🔩</div><h3>Suspensão e Direção</h3><p>Conforto e estabilidade total.</p><ul><li>Amortecedores</li><li>Buchas e bandejas</li><li>Caixa de direção</li></ul></div>
+      <div class="card"><div class="icon">⚙️</div><h3>Motor e Injeção</h3><p>Diagnóstico preciso com scanner.</p><ul><li>Injeção eletrônica</li><li>Correia dentada</li><li>Superaquecimento</li></ul></div>
+      <div class="card"><div class="icon">🔋</div><h3>Elétrica e Bateria</h3><p>Partida rápida em qualquer clima.</p><ul><li>Baterias com garantia</li><li>Alternador e arranque</li><li>Faróis e fusíveis</li></ul></div>
+      <div class="card"><div class="icon">❄️</div><h3>Ar-Condicionado</h3><p>Gelando forte e sem mau cheiro.</p><ul><li>Recarga de gás</li><li>Higienização</li><li>Compressor</li></ul></div>
+      <div class="card"><span class="tag">Oferta</span><div class="icon">🛞</div><h3>Pneus, Alinhamento</h3><p>Durabilidade e direção reta.</p><ul><li>Pneus nacionais e import.</li><li>Alinhamento 3D</li><li>Balanceamento</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona" class="steps-bg">
+  <div class="container">
+    <span class="eyebrow">Simples e transparente</span>
+    <h2>Como funciona o atendimento</h2>
+    <p class="sub">Você acompanha tudo pelo WhatsApp, com fotos e aprovação antes de qualquer serviço.</p>
+    <div class="steps">
+      <div class="step"><b class="num">1</b><h3>Agende</h3><p style="color:var(--muted);font-size:14px">Escolha o horário pelo formulário ou WhatsApp. Leva 1 minuto.</p></div>
+      <div class="step"><b class="num">2</b><h3>Diagnóstico</h3><p style="color:var(--muted);font-size:14px">Scanner + inspeção visual com relatório e fotos.</p></div>
+      <div class="step"><b class="num">3</b><h3>Aprove o orçamento</h3><p style="color:var(--muted);font-size:14px">Preço fechado, sem surpresa. Só executamos com seu OK.</p></div>
+      <div class="step"><b class="num">4</b><h3>Retire com garantia</h3><p style="color:var(--muted);font-size:14px">Teste de rodagem, nota fiscal e 12 meses de garantia.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container about-grid">
+    <div class="about-img">
+      <span class="eyebrow">Por que a MasterCar?</span>
+      <h2 style="margin-top:8px">Oficina limpa, moderna e honesta de verdade</h2>
+      <div style="margin-top:18px">
+        <div class="meter"><div><span>Diagnóstico eletrônico</span><span>100%</span></div><div class="bar"><i style="width:100%"></i></div></div>
+        <div class="meter"><div><span>Peças originais / 1ª linha</span><span>100%</span></div><div class="bar"><i style="width:100%"></i></div></div>
+        <div class="meter"><div><span>Clientes que voltam</span><span>94%</span></div><div class="bar"><i style="width:94%"></i></div></div>
+      </div>
+    </div>
+    <div>
+      <ul class="checklist">
+        <li><span class="check">✓</span> Mecânicos certificados e uniformizados</li>
+        <li><span class="check">✓</span> Scanner das principais montadoras (GM, VW, Fiat, Hyundai, Toyota...)</li>
+        <li><span class="check">✓</span> Sala de espera com café, Wi-Fi e câmeras da oficina ao vivo</li>
+        <li><span class="check">✓</span> Levamos e buscamos seu carro no trabalho ou em casa</li>
+        <li><span class="check">✓</span> Pagamento em até 12x, Pix e faturamento para empresas/frotas</li>
+      </ul>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+        <a class="btn btn-blue" href="#agendar">Quero agendar agora</a>
+        <a class="btn btn-outline" href="#planos">Ver pacotes de revisão</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANOS -->
+<section id="planos" style="padding-top:0">
+  <div class="container">
+    <span class="eyebrow">Pacotes de revisão</span>
+    <h2>Preço fechado, sem letra miúda</h2>
+    <p class="sub">Valores de referência para carros 1.0 a 1.6. Carros importados, SUVs e diesel sob consulta — chame no WhatsApp.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Essencial</h3><p style="color:var(--muted);font-size:14px">Para quem roda pouco na cidade</p>
+        <div class="p">R$ 199<small> / revisão</small></div>
+        <ul><li>Troca de óleo + filtro</li><li>Check-up 30 itens</li><li>Rodízio de pneus</li><li>Scanner básico</li><li>Garantia 6 meses</li></ul>
+        <a class="btn btn-outline" style="width:100%" href="https://wa.me/5511999999999?text=Quero%20a%20Revis%C3%A3o%20Essencial%20(R%24%20199)">Escolher Essencial</a>
+      </div>
+      <div class="plan pop">
+        <span class="pop-tag">★ MAIS CONTRATADO</span>
+        <h3>Completa</h3><p style="color:var(--muted);font-size:14px">A favorita das famílias</p>
+        <div class="p">R$ 399<small> / revisão</small></div>
+        <ul><li>Tudo do Essencial +</li><li>Filtros ar + combustível</li><li>Freios: limpeza e regulagem</li><li>Higienização do ar-condicionado</li><li>Garantia 12 meses</li></ul>
+        <a class="btn btn-blue" style="width:100%" href="https://wa.me/5511999999999?text=Quero%20a%20Revis%C3%A3o%20Completa%20(R%24%20399)">Escolher Completa</a>
+      </div>
+      <div class="plan">
+        <h3>Premium</h3><p style="color:var(--muted);font-size:14px">Para viagem e alta quilometragem</p>
+        <div class="p">R$ 649<small> / revisão</small></div>
+        <ul><li>Tudo da Completa +</li><li>Fluidos: freio, direção e arrefecimento</li><li>Alinhamento + balanceamento</li><li>Correias e velas (mão de obra)</li><li>Garantia 12 meses + revisões grátis</li></ul>
+        <a class="btn btn-outline" style="width:100%" href="https://wa.me/5511999999999?text=Quero%20a%20Revis%C3%A3o%20Premium%20(R%24%20649)">Escolher Premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AVALIAÇÕES -->
+<section id="avaliacoes" style="padding-top:0">
+  <div class="container">
+    <span class="eyebrow">Quem confia, recomenda</span>
+    <h2>4.9 estrelas em 480+ avaliações</h2>
+    <div class="depo-grid">
+      <div class="depo"><span class="stars">★★★★★</span><p style="margin-top:8px">“Levei meu Onix pra revisão antes de viajar. Me mandaram fotos de tudo, preço justo e entregaram antes do prazo. Nunca vi oficina tão organizada.”</p><div class="who"><span class="avatar">C</span><div><b>Carlos M.</b><br><span style="font-size:13px;color:var(--muted)">Onix 2022 • Revisão Completa</span></div></div></div>
+      <div class="depo"><span class="stars">★★★★★</span><p style="margin-top:8px">“Meu ar-condicionado não gelava e dois lugares falaram pra trocar o compressor. Aqui foi só recarga + higienização. Honestidade rara!”</p><div class="who"><span class="avatar">A</span><div><b>Ana Paula S.</b><br><span style="font-size:13px;color:var(--muted)">HB20 2021 • Ar-condicionado</span></div></div></div>
+      <div class="depo"><span class="stars">★★★★★</span><p style="margin-top:8px">“Cuido da frota da empresa aqui há 3 anos. Nota fiscal correta, relatório por carro e nunca deixaram um veículo parado. Recomendo de olhos fechados.”</p><div class="who"><span class="avatar">R</span><div><b>Roberto F.</b><br><span style="font-size:13px;color:var(--muted)">Frota • 8 veículos</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDAMENTO -->
+<section id="agendar" style="padding-top:0">
+  <div class="container">
+    <div class="booking">
+      <div class="booking-info">
+        <span class="eyebrow" style="color:#9db9ff">Agendamento em 1 minuto</span>
+        <h2>Agende sua revisão agora</h2>
+        <p>Preencha ao lado — ao enviar, abrimos seu WhatsApp com a mensagem pronta. Sem cadastro, sem enrolação.</p>
+        <div class="info-item"><span class="info-ico">⚡</span><div><b>Atendimento hoje</b><br><span style="color:#c9d8ff;font-size:14px">Vagas de encaixe para freios, bateria e emergências.</span></div></div>
+        <div class="info-item"><span class="info-ico">🚗</span><div><b>Leva e traz grátis</b><br><span style="color:#c9d8ff;font-size:14px">Na região central em serviços acima de R$ 300.</span></div></div>
+        <div class="info-item"><span class="info-ico">💳</span><div><b>Parcele em até 12x</b><br><span style="color:#c9d8ff;font-size:14px">Pix, crédito, débito e faturado para empresas.</span></div></div>
+      </div>
+      <form id="form-agenda" onsubmit="return enviarWhats(event)">
+        <div class="row2">
+          <div><label>Seu nome *</label><input id="f-nome" required placeholder="Ex: João Silva"></div>
+          <div><label>WhatsApp / Telefone *</label><input id="f-fone" required placeholder="(11) 99999-9999"></div>
+        </div>
+        <div class="row2">
+          <div><label>Carro (modelo + ano)</label><input id="f-carro" placeholder="Ex: Corolla 2020"></div>
+          <div><label>Placa (opcional)</label><input id="f-placa" placeholder="Ex: ABC1D23"></div>
+        </div>
+        <div><label>Serviço desejado *</label>
+          <select id="f-serv" required>
+            <option value="">Selecione...</option>
+            <option>Revisão preventiva</option>
+            <option>Troca de óleo</option>
+            <option>Freios</option>
+            <option>Suspensão / Direção</option>
+            <option>Motor / Injeção eletrônica</option>
+            <option>Elétrica / Bateria</option>
+            <option>Ar-condicionado</option>
+            <option>Pneus / Alinhamento / Balanceamento</option>
+            <option>Outro / Não sei — preciso de diagnóstico</option>
+          </select>
+        </div>
+        <div class="row2">
+          <div><label>Data preferida</label><input id="f-data" type="date"></div>
+          <div><label>Período</label><select id="f-per"><option>Manhã</option><option>Tarde</option><option>Encaixe / urgente</option></select></div>
+        </div>
+        <div><label>Descreva o sintoma</label><textarea id="f-msg" rows="3" placeholder="Ex: barulho ao frear, luz da injeção acesa..."></textarea></div>
+        <button class="btn btn-green" type="submit">📲 Enviar e agendar no WhatsApp</button>
+        <span class="hint">Ao clicar, você será redirecionado ao WhatsApp da oficina com tudo preenchido.</span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ + CONTATO -->
+<section id="contato" style="padding-top:0">
+  <div class="container">
+    <div class="faq-contact">
+      <div>
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2>Perguntas e respostas</h2>
+        <div style="margin-top:20px">
+          <details open><summary>Vocês dão garantia dos serviços?</summary><p>Sim, 12 meses na maioria dos serviços (6 meses na linha Essencial), com nota fiscal e garantia por escrito na ordem de serviço.</p></details>
+          <details><summary>Preciso agendar ou atendem por ordem de chegada?</summary><p>Atendemos os dois, mas o agendamento tem prioridade e diagnóstico mais rápido. Encaixes para emergências (bateria, freios, superaquecimento) no mesmo dia.</p></details>
+          <details><summary>Posso trazer minha própria peça?</summary><p>Pode, mas a garantia cobre apenas a mão de obra nesse caso. Recomendamos nossas peças de 1ª linha, com garantia total.</p></details>
+          <details><summary>Vocês atendem seguradoras e frotas?</summary><p>Sim. Trabalhamos com as principais seguradoras e temos condições especiais para frotas e empresas, com faturamento mensal.</p></details>
+        </div>
+      </div>
+      <div class="contact-card">
+        <span class="eyebrow">Visite a oficina</span>
+        <h2 style="font-size:26px">Onde estamos</h2>
+        <div class="kv"><span>📍 Endereço</span><b style="text-align:right">Av. Principal, 1234 — Centro</b></div>
+        <div class="kv"><span>🕒 Horário</span><b style="text-align:right">Seg–Sex 8h–18h • Sáb 8h–12h</b></div>
+        <div class="kv"><span>📞 Telefone</span><b><a href="tel:+5511999999999" style="color:var(--blue)">(11) 99999-9999</a></b></div>
+        <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap">
+          <a class="btn btn-whats" style="flex:1" target="_blank" rel="noopener" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20falar%20com%20a%20oficina.">💬 Chamar no WhatsApp</a>
+          <a class="btn btn-outline" style="flex:1" href="tel:+5511999999999">📞 Ligar agora</a>
+        </div>
+        <iframe title="Mapa" src="https://www.google.com/maps?q=Av.+Paulista+S%C3%A3o+Paulo&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div>
+        <div class="logo" style="color:#fff"><span class="logo-mark">🔧</span><span>MasterCar<small style="color:#9db9ff">AUTO CENTER</small></span></div>
+        <p style="font-size:14px;margin-top:12px;max-width:340px">Mecânica completa com diagnóstico eletrônico, peças de qualidade e garantia por escrito. Seu carro em boas mãos desde 2010.</p>
+      </div>
+      <div><h4>Serviços</h4><a href="#servicos">Revisão preventiva</a><a href="#servicos">Freios e suspensão</a><a href="#servicos">Motor e injeção</a><a href="#servicos">Ar-condicionado</a><a href="#servicos">Pneus e alinhamento</a></div>
+      <div><h4>Atendimento</h4><a href="#agendar">Agendar revisão</a><a href="#planos">Pacotes</a><a href="#avaliacoes">Avaliações</a><a href="#contato">Contato e mapa</a></div>
+    </div>
+    <div class="copy"><span>© <span id="ano"></span> MasterCar Auto Center — Todos os direitos reservados.</span><span>CNPJ 00.000.000/0001-00 • Feito para converter no Google e WhatsApp</span></div>
+  </div>
+</footer>
+
+<a class="float" target="_blank" rel="noopener" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20meu%20carro." aria-label="WhatsApp">💬</a>
+
+<script>
+// ===== EDITE AQUI: dados da sua oficina =====
+const OFICINA = {
+  whatsapp: "5511999999999", // só números, com DDD + 55
+  nome: "MasterCar Auto Center"
+};
+document.getElementById('ano').textContent = new Date().getFullYear();
+
+function enviarWhats(e){
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const nome=v('f-nome'), fone=v('f-fone'), carro=v('f-carro'), placa=v('f-placa'),
+        serv=v('f-serv'), data=v('f-data'), per=v('f-per'), msg=v('f-msg');
+  if(!nome || !fone || !serv){ alert("Preencha nome, telefone e serviço."); return false; }
+  let texto = `Olá, ${OFICINA.nome}! Quero agendar:%0A%0A` +
+    `👤 Nome: ${encodeURIComponent(nome)}%0A` +
+    `📱 Tel: ${encodeURIComponent(fone)}%0A` +
+    (carro?`🚗 Carro: ${encodeURIComponent(carro)}%0A`:"") +
+    (placa?`🔢 Placa: ${encodeURIComponent(placa)}%0A`:"") +
+    `🔧 Serviço: ${encodeURIComponent(serv)}%0A` +
+    (data?`📅 Data: ${encodeURIComponent(data)}%0A`:"") +
+    `⏰ Período: ${encodeURIComponent(per)}%0A` +
+    (msg?`📝 Sintoma: ${encodeURIComponent(msg)}`:"");
+  window.open(`https://wa.me/${OFICINA.whatsapp}?text=${texto}`,"_blank");
+  return false;
+}
+// máscara simples de telefone
+document.getElementById('f-fone').addEventListener('input', function(){
+  let d = this.value.replace(/\D/g,'').slice(0,11);
+  if(d.length>6) this.value = `(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}`;
+  else if(d.length>2) this.value = `(${d.slice(0,2)}) ${d.slice(2)}`;
+  else this.value = d;
+});
+</script>
+</body>
+</html>
