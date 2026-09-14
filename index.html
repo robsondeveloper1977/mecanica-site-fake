@@ -167,7 +167,7 @@ footer{background:var(--ink);color:#c9d8ff;padding:40px 0 22px;margin-top:20px}
 </head>
 <body>
 
-<div style="background:#ff7a00;color:#fff;text-align:center;font-size:13px;font-weight:800;padding:8px 12px;letter-spacing:.02em">⚠️ SITE FAKE PARA ANÁLISE — marca, telefone, endereço e preços fictícios &nbsp;•&nbsp; <a href="analise.html" style="color:#fff;text-decoration:underline">abrir painel demo →</a></div>
+<div id="fake-bar" style="background:#ff7a00;color:#fff;text-align:center;font-size:13px;font-weight:800;padding:8px 12px;letter-spacing:.02em;transition:opacity .5s">⚠️ SITE FAKE PARA ANÁLISE — marca, telefone, endereço e preços fictícios &nbsp;•&nbsp; <a href="analise.html" style="color:#fff;text-decoration:underline">abrir painel demo →</a></div>
 
 <div class="topbar">
   <div class="container">
@@ -466,6 +466,8 @@ document.getElementById('f-fone').addEventListener('input', function(){
   else if(d.length>2) this.value = `(${d.slice(0,2)}) ${d.slice(2)}`;
   else this.value = d;
 });
+// esconde a faixa fake após 3 segundos
+setTimeout(function(){var b=document.getElementById('fake-bar');if(b){b.style.opacity='0';setTimeout(function(){b.style.display='none';},600);}},3000);
 </script>
 </body>
 </html>
